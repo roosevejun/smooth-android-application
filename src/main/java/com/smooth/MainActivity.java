@@ -57,11 +57,18 @@ public class MainActivity extends FragmentActivity {
     PopupWindow mPopupWindow;
     View currentButton;
     private int mLevel = 1;
-    @FragmentByTag
+    @FragmentById(R.id.fl_content)
     NewsFatherFragment newsFatherFragment;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+//        newsFatherFragment=new NewsFatherFragment_();
+    }
+
     @AfterInject
     void afterInject(){
-//        mNews.performClick();
+
     }
     @AfterViews
     void afterViews() {
@@ -72,7 +79,6 @@ public class MainActivity extends FragmentActivity {
     void newsOnClickListener(View v) {
         FragmentManager fm=getSupportFragmentManager();
         FragmentTransaction ft=fm.beginTransaction();
-        newsFatherFragment=new NewsFatherFragment_();
         ft.replace(R.id.fl_content, newsFatherFragment,MainActivity_.TAG);
         ft.commit();
 //        setButton(v);

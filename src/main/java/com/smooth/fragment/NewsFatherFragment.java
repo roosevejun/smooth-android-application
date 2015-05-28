@@ -9,6 +9,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
@@ -18,6 +19,7 @@ import com.google.inject.Inject;
 import com.smooth.R;
 import com.smooth.view.TitleBarView;
 import android.view.ViewGroup.LayoutParams;
+import com.smooth.view.TitleBarView_;
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EFragment;
@@ -41,6 +43,7 @@ public class NewsFatherFragment extends Fragment {
     View mPopView;
     @ViewById(R.id.title_bar)
     TitleBarView mTitleBarView;
+    @ViewById(R.id.pop_chat)
     ImageView mChats;
 
     ImageView mShare;
@@ -50,7 +53,13 @@ public class NewsFatherFragment extends Fragment {
     ImageView mScan;
     @ViewById(R.id.rl_canvers)
     RelativeLayout mCanversLayout;
+
+
+
+    @ViewById(R.id.child_fragment)
+    FrameLayout frameLayout;
     PopupWindow mPopupWindow;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {

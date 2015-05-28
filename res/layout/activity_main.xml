@@ -55,8 +55,9 @@
         android:layout_above="@id/buttom_bar_group"
         android:background="@color/devide_line" />
 
-    <FrameLayout
+    <fragment
         android:id="@+id/fl_content"
+        android:name="com.smooth.fragment.NewsFatherFragment_"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@id/line" />
