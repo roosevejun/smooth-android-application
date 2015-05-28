@@ -2,16 +2,22 @@ package com.smooth;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 import com.google.inject.Inject;
+import com.smooth.activity.LoginActivity_;
+import com.smooth.fragment.NewsFatherFragment;
+import com.smooth.fragment.NewsFatherFragment_;
 import com.smooth.listener.WelcomeListener;
-import org.androidannotations.annotations.EActivity;
-import org.androidannotations.annotations.RoboGuice;
-import org.androidannotations.annotations.ViewById;
+import org.androidannotations.annotations.*;
 
 /**
  * 项目名称：smooth-android-application
@@ -26,7 +32,8 @@ import org.androidannotations.annotations.ViewById;
  */
 @EActivity(R.layout.activity_main)
 @RoboGuice(WelcomeListener.class)
-public class MainActivity extends Activity {
+public class MainActivity extends FragmentActivity {
+    protected static final String TAG = "MainActivity";
     @Inject
     Context context;
     @ViewById(R.id.buttom_news)
@@ -37,7 +44,7 @@ public class MainActivity extends Activity {
     ImageButton mDeynaimic;
     @ViewById(R.id.buttom_setting)
     ImageButton mSetting;
-    @ViewById(R.id.buttom_setting)
+    @ViewById(R.id.app_exit)
     View mPopView;
     @ViewById(R.id.app_cancle)
     TextView app_cancle;
@@ -50,4 +57,60 @@ public class MainActivity extends Activity {
     PopupWindow mPopupWindow;
     View currentButton;
     private int mLevel = 1;
+    @FragmentByTag
+    NewsFatherFragment newsFatherFragment;
+    @AfterInject
+    void afterInject(){
+//        mNews.performClick();
+    }
+    @AfterViews
+    void afterViews() {
+        mNews.performClick();
+    }
+
+    @Click(R.id.buttom_news)
+    void newsOnClickListener(View v) {
+        FragmentManager fm=getSupportFragmentManager();
+        FragmentTransaction ft=fm.beginTransaction();
+        newsFatherFragment=new NewsFatherFragment_();
+        ft.replace(R.id.fl_content, newsFatherFragment,MainActivity_.TAG);
+        ft.commit();
+//        setButton(v);
+    }
+
+    @Click(R.id.buttom_constact)
+    void constactOnClickListener() {
+    }
+
+    @Click(R.id.buttom_deynaimic)
+    void deynaimicOnClickListener() {
+    }
+
+    @Click(R.id.buttom_setting)
+    void settingOnClickListener() {
+    }
+    @Click(R.id.app_cancle)
+    void cancleOnClickListener() {
+        mPopupWindow.dismiss();
+    }
+    @Click(R.id.app_change_user)
+    void changeUserOnClickListener() {
+        Intent intent=new Intent(context, LoginActivity_.class);
+        startActivity(intent);
+        ((Activity)context).overridePendingTransition(R.anim.activity_up, R.anim.fade_out);
+        finish();
+    }
+
+    @Click(R.id.app_exit)
+    void appExitOnClickListener() {
+        finish();
+    }
+    private void setButton(View v){
+        if(currentButton!=null&&currentButton.getId()!=v.getId()){
+            currentButton.setEnabled(true);
+        }
+        v.setEnabled(false);
+        currentButton=v;
+    }
+
 }
