@@ -6,6 +6,11 @@
         android:id="@+id/title_bar"
         android:layout_height="wrap_content"
         android:layout_width="match_parent"/>
+    <com.smooth.view.NewsPopView_
+            android:id="@+id/news_pop"
+            android:visibility="gone"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"/>
     <FrameLayout
         android:id="@+id/child_fragment"
         android:layout_height="match_parent"

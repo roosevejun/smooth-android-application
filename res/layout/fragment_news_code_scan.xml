@@ -9,7 +9,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center" />
 
-    <com.qq.view.ErcodeScanView
+    <com.smooth.view.ErcodeScanView_
         android:id="@+id/viewfinder_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />

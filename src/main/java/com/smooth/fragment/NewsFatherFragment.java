@@ -9,21 +9,16 @@ import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.FrameLayout;
-import android.widget.ImageView;
-import android.widget.PopupWindow;
-import android.widget.RelativeLayout;
+import android.widget.*;
 import android.view.View.OnClickListener;
 import android.widget.PopupWindow.OnDismissListener;
 import com.google.inject.Inject;
 import com.smooth.R;
+import com.smooth.view.NewsPopView;
 import com.smooth.view.TitleBarView;
 import android.view.ViewGroup.LayoutParams;
 import com.smooth.view.TitleBarView_;
-import org.androidannotations.annotations.AfterViews;
-import org.androidannotations.annotations.Click;
-import org.androidannotations.annotations.EFragment;
-import org.androidannotations.annotations.ViewById;
+import org.androidannotations.annotations.*;
 
 /**
  * 项目名称：smooth-android-application
@@ -40,17 +35,19 @@ import org.androidannotations.annotations.ViewById;
 public class NewsFatherFragment extends Fragment {
     @Inject
     Context context;
-    View mPopView;
+
+    @ViewById(R.id.news_pop)
+    NewsPopView mPopView;
     @ViewById(R.id.title_bar)
     TitleBarView mTitleBarView;
-    @ViewById(R.id.pop_chat)
-    ImageView mChats;
 
-    ImageView mShare;
-
-    ImageView mCamera;
-
-    ImageView mScan;
+//    ImageView mChats;
+//
+//    ImageView mShare;
+//
+//    ImageView mCamera;
+//
+//    ImageView mScan;
     @ViewById(R.id.rl_canvers)
     RelativeLayout mCanversLayout;
 
@@ -63,11 +60,11 @@ public class NewsFatherFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        mPopView = inflater.inflate(R.layout.fragment_news_pop, null);
-        mChats = (ImageView) mPopView.findViewById(R.id.pop_chat);
-        mShare = (ImageView) mPopView.findViewById(R.id.pop_sangzhao);
-        mCamera = (ImageView) mPopView.findViewById(R.id.pop_camera);
-        mScan = (ImageView) mPopView.findViewById(R.id.pop_scan);
+//        mPopView = inflater.inflate(R.layout.fragment_news_pop, null);
+//        mChats = (ImageView) mPopView.findViewById(R.id.pop_chat);
+//        mShare = (ImageView) mPopView.findViewById(R.id.pop_sangzhao);
+//        mCamera = (ImageView) mPopView.findViewById(R.id.pop_camera);
+//        mScan = (ImageView) mPopView.findViewById(R.id.pop_scan);
         return null;
     }
 
@@ -77,14 +74,15 @@ public class NewsFatherFragment extends Fragment {
         mCanversLayout.setVisibility(View.VISIBLE);
     }
 
+
+
     @AfterViews
     void afterViews() {
         mTitleBarView.setCommonTitle(View.GONE, View.GONE, View.VISIBLE,
                 View.VISIBLE);
         mTitleBarView.setBtnRight(R.drawable.skin_conversation_title_right_btn);
 
-        mPopupWindow = new PopupWindow(mPopView, LayoutParams.MATCH_PARENT,
-                LayoutParams.WRAP_CONTENT, true);
+        mPopupWindow = new PopupWindow(mPopView, LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT, true);
         mPopupWindow.setOnDismissListener(new OnDismissListener() {
             @Override
             public void onDismiss() {
@@ -97,29 +95,29 @@ public class NewsFatherFragment extends Fragment {
         mTitleBarView.setTitleRight(R.string.call);
 
 
-        mTitleBarView.getTitleLeft().setOnClickListener(new OnClickListener() {
-            @SuppressLint("NewApi")
-            @Override
-            public void onClick(View v) {
-                if (mTitleBarView.getTitleLeft().isEnabled()) {
-                    mTitleBarView.getTitleLeft().setEnabled(false);
-                    mTitleBarView.getTitleRight().setEnabled(true);
+//        mTitleBarView.getTitleLeft().setOnClickListener(new OnClickListener() {
+//            @SuppressLint("NewApi")
+//            @Override
+//            public void onClick(View v) {
+//                if (mTitleBarView.getTitleLeft().isEnabled()) {
+//                    mTitleBarView.getTitleLeft().setEnabled(false);
+//                    mTitleBarView.getTitleRight().setEnabled(true);
 
 //                    FragmentTransaction ft = getFragmentManager().beginTransaction();
 //                    NewsFragment newsFragment = new NewsFragment();
 //                    ft.replace(R.id.child_fragment, newsFragment, NewsFatherFragment.TAG);
 //                    ft.commit();
-                }
-            }
-        });
+//                }
+//            }
+//        });
 
-        mTitleBarView.getTitleRight().setOnClickListener(new OnClickListener() {
-            @SuppressLint("NewApi")
-            @Override
-            public void onClick(View v) {
-                if (mTitleBarView.getTitleRight().isEnabled()) {
-                    mTitleBarView.getTitleLeft().setEnabled(true);
-                    mTitleBarView.getTitleRight().setEnabled(false);
+//        mTitleBarView.getTitleRight().setOnClickListener(new OnClickListener() {
+//            @SuppressLint("NewApi")
+//            @Override
+//            public void onClick(View v) {
+//                if (mTitleBarView.getTitleRight().isEnabled()) {
+//                    mTitleBarView.getTitleLeft().setEnabled(true);
+//                    mTitleBarView.getTitleRight().setEnabled(false);
 
 //                    FragmentTransaction ft = getFragmentManager().beginTransaction();
 //                    CallFragment callFragment = new CallFragment();
@@ -127,32 +125,32 @@ public class NewsFatherFragment extends Fragment {
 //                    ft.commit();
 
 
-                }
-
-            }
-        });
+//                }
+//
+//            }
+//        });
 
         mTitleBarView.getTitleLeft().performClick();
 
-        mScan.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
+//        mTitleBarView.getMScan().setOnClickListener(new OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
 //                Intent intent = new Intent(context, ErcodeScanActivity.class);
 //                startActivity(intent);
-                mPopupWindow.dismiss();
-            }
-        });
-
-        mCamera.setOnClickListener(new OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
+//                mPopupWindow.dismiss();
+//            }
+//        });
+//
+//        mCamera.setOnClickListener(new OnClickListener() {
+//
+//            @Override
+//            public void onClick(View v) {
 //                Intent intent = new Intent(context, WaterCameraActivity.class);
 //                startActivity(intent);
-                mPopupWindow.dismiss();
-
-            }
-        });
+//                mPopupWindow.dismiss();
+//
+//            }
+//        });
     }
 
 }
