@@ -1,12 +1,12 @@
 package com.smooth.fragment;
 
-import android.content.Context;
+import android.app.Dialog;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import com.smooth.R;
 import com.smooth.view.TitleBarView;
 import org.androidannotations.annotations.AfterViews;
@@ -36,11 +36,19 @@ public class SettingFragment extends DialogFragment {
                              Bundle savedInstanceState) {
         return null;
     }
+
     @AfterViews
     void afterViews(){
     mTitleBarView.setCommonTitle(View.GONE, View.VISIBLE, View.GONE, View.GONE);
     mTitleBarView.setTitleText(R.string.mime);
     }
 
+    @Override
+    public Dialog onCreateDialog(Bundle savedInstanceState) {
+        Dialog dialog = super.onCreateDialog(savedInstanceState);
 
+        // request a window without the title
+        dialog.getWindow().requestFeature(Window.FEATURE_NO_TITLE);
+        return dialog;
+    }
 }

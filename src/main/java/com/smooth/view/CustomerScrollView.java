@@ -29,48 +29,50 @@ public class CustomerScrollView extends ScrollView {
     public CustomerScrollView(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
     }
+
     protected void onFinishInflate() {
-        if(getChildCount()>0){
+        if (getChildCount() > 0) {
             this.mView = getChildAt(0);
         }
     }
 
     @Override
     public boolean onTouchEvent(MotionEvent ev) {
-        if(mView == null){
+        if (mView == null) {
             return super.onTouchEvent(ev);
-        }else{
+        } else {
             commOnTouchEvent(ev);
         }
         return super.onTouchEvent(ev);
     }
 
-    private void commOnTouchEvent(MotionEvent ev){
+    private void commOnTouchEvent(MotionEvent ev) {
         int action = ev.getAction();
         switch (action) {
-            case MotionEvent.ACTION_DOWN :
+            case MotionEvent.ACTION_DOWN:
                 y = ev.getY();
                 break;
             case MotionEvent.ACTION_UP:
-                if(isNeedAnimation()){
+                if (isNeedAnimation()) {
                     animation();
                 }
                 break;
             case MotionEvent.ACTION_MOVE:
                 final float preY = y;
                 float nowY = ev.getY();
-                int deltaY = (int)(preY - nowY);
+                int deltaY = (int) (preY - nowY);
                 scrollBy(0, deltaY);
                 y = nowY;
-                if(isNeedMove()){
-                    if(mRect.isEmpty()){
-                        mRect.set(mView.getLeft(),mView.getTop(),mView.getRight(),mView.getBottom());
+                if (isNeedMove()) {
+                    if (mRect.isEmpty()) {
+                        mRect.set(mView.getLeft(), mView.getTop(), mView.getRight(), mView.getBottom());
                     }
-                    if(mView.getTop() - deltaY <150 && mView.getTop() -deltaY > -150){					mView.layout(mView.getLeft(), mView.getTop()-deltaY, mView.getRight(), mView.getBottom()-deltaY);
+                    if (mView.getTop() - deltaY < 150 && mView.getTop() - deltaY > -150) {
+                        mView.layout(mView.getLeft(), mView.getTop() - deltaY, mView.getRight(), mView.getBottom() - deltaY);
                     }
                 }
                 break;
-            default :
+            default:
                 break;
         }
     }
@@ -78,18 +80,18 @@ public class CustomerScrollView extends ScrollView {
     private boolean isNeedMove() {
         int offset = mView.getMeasuredHeight() - getHeight();
         int scrollY = getScrollY();
-        if(scrollY == 0 || scrollY == offset){
+        if (scrollY == 0 || scrollY == offset) {
             return true;
         }
         return false;
     }
 
-    private boolean isNeedAnimation(){
+    private boolean isNeedAnimation() {
         return !mRect.isEmpty();
     }
 
-    private void animation(){
-        TranslateAnimation ta = new TranslateAnimation(0,0,mView.getTop(),mRect.top);
+    private void animation() {
+        TranslateAnimation ta = new TranslateAnimation(0, 0, mView.getTop(), mRect.top);
         ta.setDuration(200);
         mView.startAnimation(ta);
         mView.layout(mRect.left, mRect.top, mRect.right, mRect.bottom);

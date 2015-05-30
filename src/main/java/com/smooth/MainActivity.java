@@ -57,6 +57,8 @@ public class MainActivity extends FragmentActivity implements AlertDialogFragmen
     NewsFatherFragment newsFatherFragment;
     @FragmentByTag("alertDialog")
     AlertDialogFragment alertDialogFragment;
+   @FragmentByTag("setting")
+   SettingFragment settingFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -128,9 +130,9 @@ public class MainActivity extends FragmentActivity implements AlertDialogFragmen
 //            if (null != fragment) {
 //                ft.remove(fragment);
 //            }
-            if(alertDialogFragment==null)
-             alertDialogFragment = new AlertDialogFragment_();
-            alertDialogFragment.show(ft, "alertDialog");
+            if(settingFragment==null)
+                settingFragment = new SettingFragment_();
+            settingFragment.show(ft, "alertDialog");
         }
         return super.onKeyDown(keyCode, event);
     }
