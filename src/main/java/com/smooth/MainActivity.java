@@ -28,7 +28,7 @@ import org.androidannotations.annotations.*;
  */
 @EActivity(R.layout.activity_main)
 @RoboGuice(WelcomeListener.class)
-public class MainActivity extends FragmentActivity implements AlertDialogFragment_.DialogFragmentClickImpl {
+public class MainActivity extends FragmentActivity  {
     protected static final String TAG = "MainActivity";
     @Inject
     Context context;
@@ -50,13 +50,12 @@ public class MainActivity extends FragmentActivity implements AlertDialogFragmen
     TextView app_change;
     @ViewById(R.id.buttom_bar_group)
     LinearLayout buttomBarGroup;
-    PopupWindow mPopupWindow;
     View currentButton;
     private int mLevel = 1;
     @FragmentById(R.id.fl_content)
     NewsFatherFragment newsFatherFragment;
-    @FragmentByTag("alertDialog")
-    AlertDialogFragment alertDialogFragment;
+    @FragmentByTag("appExit")
+    AppExitFragment appExitFragment;
    @FragmentByTag("setting")
    SettingFragment settingFragment;
 
@@ -98,7 +97,7 @@ public class MainActivity extends FragmentActivity implements AlertDialogFragmen
 
     @Click(R.id.app_cancle)
     void cancleOnClickListener() {
-        mPopupWindow.dismiss();
+
     }
 
     @Click(R.id.app_change_user)
@@ -126,28 +125,12 @@ public class MainActivity extends FragmentActivity implements AlertDialogFragmen
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_MENU) {
             FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-//            Fragment fragment =   getSupportFragmentManager().findFragmentByTag("alertDialog");
-//            if (null != fragment) {
-//                ft.remove(fragment);
-//            }
-            if(settingFragment==null)
-                settingFragment = new SettingFragment_();
-            settingFragment.show(ft, "alertDialog");
+            if(appExitFragment==null)
+                appExitFragment = new AppExitFragment_();
+            appExitFragment.show(ft, "appExit");
         }
         return super.onKeyDown(keyCode, event);
     }
-    @Override
-    public void doPositiveClick() {
-        showToast("确定按钮");
-    }
 
-    @Override
-    public void doNegativeClick() {
-        showToast("取消按钮");
-    }
-
-    private void showToast(String msg) {
-        Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
-    }
 
 }

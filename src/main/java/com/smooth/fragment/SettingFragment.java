@@ -49,6 +49,11 @@ public class SettingFragment extends DialogFragment {
 
         // request a window without the title
         dialog.getWindow().requestFeature(Window.FEATURE_NO_TITLE);
+        dialog.getWindow().getAttributes().windowAnimations = R.style.app_pop;
         return dialog;
+    }
+    @Override
+    public int getTheme() {
+        return R.style.app_pop;
     }
 }
