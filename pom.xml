@@ -86,10 +86,10 @@
                 <configuration>
                     <sdk>
                         <platform>16</platform>
-                        <path>D:\Program Files\adt-bundle-windows-x86_64-20130717\sdk</path>
+                        <path>D:\javaDevelop\adt-bundle-windows-x86_64-20130717\sdk</path>
                     </sdk>
                     <emulator>
-                        <avd>Nexus_5_API_19</avd>
+                        <avd>Nexus_5_API_22</avd>
                         <options>-netspeed full -netdelay none</options>
                     </emulator>
                     <undeployBeforeDeploy>false</undeployBeforeDeploy>

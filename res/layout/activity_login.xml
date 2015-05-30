@@ -34,6 +34,7 @@
             android:padding="5dp"
             android:inputType="text"
             android:hint="@string/et_account_hint"
+            android:text="admin@jsdw"
             android:background="@drawable/login_et_bg"
             android:layout_margin="2dp"/>
         <View 
@@ -47,6 +48,7 @@
             android:padding="5dp"
             android:inputType="textPassword"
             android:hint="@string/et_password_hint"
+            android:text="111111"
             android:background="@drawable/login_et_bg"
             android:layout_margin="2dp"/>
     </LinearLayout>

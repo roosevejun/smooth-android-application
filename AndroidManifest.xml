@@ -20,10 +20,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".SimpleActivity_" />
+        <activity android:name=".activity.SimpleActivity_" />
         <activity android:name=".MainActivity_" />
         <activity android:name=".activity.LoginActivity_" />
-
     </application>
 
 </manifest>

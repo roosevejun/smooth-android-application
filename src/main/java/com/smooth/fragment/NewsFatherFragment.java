@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -68,12 +69,13 @@ public class NewsFatherFragment extends Fragment {
         return null;
     }
 
-    @Click(R.id.buttom_constact)
-    void BtnRightOnclickListener(View v) {
+
+    @Click({R.id.title_btn_right})
+    void BtnRightClicked() {
+        ((RelativeLayout)mPopView.getParent()).removeView(mPopView);
         mTitleBarView.setPopWindow(mPopupWindow, mTitleBarView);
         mCanversLayout.setVisibility(View.VISIBLE);
     }
-
 
 
     @AfterViews

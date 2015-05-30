@@ -58,7 +58,6 @@ public class TitleBarView extends RelativeLayout {
         btnRight.setVisibility(rightVisibility);
         tv_center.setVisibility(centerVisibility);
         common_constact.setVisibility(center1Visibilter);
-
     }
     public void setBtnLeft(int icon,int txtRes){
         Drawable img=context.getResources().getDrawable(icon);
@@ -91,6 +90,7 @@ public class TitleBarView extends RelativeLayout {
     }
     @SuppressLint("NewApi")
     public void setPopWindow(PopupWindow mPopWindow,TitleBarView titleBaarView){
+
         mPopWindow.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#E9E9E9")));
         mPopWindow.showAsDropDown(titleBaarView, 0,-15);
         mPopWindow.setAnimationStyle(R.style.popwin_anim_style);
