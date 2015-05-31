@@ -95,24 +95,6 @@ public class MainActivity extends FragmentActivity  {
     void settingOnClickListener() {
     }
 
-    @Click(R.id.app_cancle)
-    void cancleOnClickListener() {
-
-    }
-
-    @Click(R.id.app_change_user)
-    void changeUserOnClickListener() {
-        Intent intent = new Intent(context, LoginActivity_.class);
-        startActivity(intent);
-        ((Activity) context).overridePendingTransition(R.anim.activity_up, R.anim.fade_out);
-        finish();
-    }
-
-    @Click(R.id.app_exit)
-    void appExitOnClickListener() {
-        finish();
-    }
-
     private void setButton(View v) {
         if (currentButton != null && currentButton.getId() != v.getId()) {
             currentButton.setEnabled(true);
