@@ -40,16 +40,6 @@ public class MainActivity extends FragmentActivity  {
     ImageButton mDeynaimic;
     @ViewById(R.id.buttom_setting)
     ImageButton mSetting;
-    @ViewById(R.id.app_exit)
-    View mPopView;
-    @ViewById(R.id.app_cancle)
-    TextView app_cancle;
-    @ViewById(R.id.app_exit)
-    TextView app_exit;
-    @ViewById(R.id.app_change_user)
-    TextView app_change;
-    @ViewById(R.id.buttom_bar_group)
-    LinearLayout buttomBarGroup;
     View currentButton;
     private int mLevel = 1;
     @FragmentById(R.id.fl_content)
@@ -80,7 +70,7 @@ public class MainActivity extends FragmentActivity  {
         FragmentTransaction ft = fm.beginTransaction();
         ft.replace(R.id.fl_content, newsFatherFragment, MainActivity_.TAG);
         ft.commit();
-//        setButton(v);
+        setButton(v);
     }
 
     @Click(R.id.buttom_constact)

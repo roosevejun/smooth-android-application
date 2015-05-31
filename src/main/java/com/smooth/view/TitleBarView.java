@@ -8,6 +8,7 @@ import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import android.widget.*;
 import com.smooth.R;
+import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.EViewGroup;
 import org.androidannotations.annotations.ViewById;
 
@@ -52,7 +53,10 @@ public class TitleBarView extends RelativeLayout {
         super(context, attrs, defStyle);
         this.context = context;
     }
-
+    @AfterViews
+    protected void viewsInit() {
+        // PROBLEM 1 would be fine now
+    }
     public void setCommonTitle(int LeftVisibility,int centerVisibility,int center1Visibilter,int rightVisibility){
         btnLeft.setVisibility(LeftVisibility);
         btnRight.setVisibility(rightVisibility);

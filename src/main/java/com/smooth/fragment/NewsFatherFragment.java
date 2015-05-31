@@ -1,8 +1,6 @@
 package com.smooth.fragment;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -11,13 +9,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.*;
-import android.view.View.OnClickListener;
-import android.widget.PopupWindow.OnDismissListener;
+
 import com.google.inject.Inject;
 import com.smooth.R;
-import com.smooth.view.NewsPopView;
 import com.smooth.view.TitleBarView;
-import android.view.ViewGroup.LayoutParams;
 import com.smooth.view.TitleBarView_;
 import org.androidannotations.annotations.*;
 
@@ -36,11 +31,11 @@ import org.androidannotations.annotations.*;
 public class NewsFatherFragment extends Fragment {
     @Inject
     Context context;
-
-    @ViewById(R.id.news_pop)
-    NewsPopView mPopView;
+    @FragmentByTag("newsPop")
+    NewsPopFragment mPopView;
     @ViewById(R.id.title_bar)
     TitleBarView mTitleBarView;
+
 
 //    ImageView mChats;
 //
@@ -52,11 +47,8 @@ public class NewsFatherFragment extends Fragment {
     @ViewById(R.id.rl_canvers)
     RelativeLayout mCanversLayout;
 
-
-
     @ViewById(R.id.child_fragment)
     FrameLayout frameLayout;
-    PopupWindow mPopupWindow;
 
 
     @Override
@@ -70,13 +62,6 @@ public class NewsFatherFragment extends Fragment {
     }
 
 
-    @Click({R.id.title_btn_right})
-    void BtnRightClicked() {
-        ((RelativeLayout)mPopView.getParent()).removeView(mPopView);
-        mTitleBarView.setPopWindow(mPopupWindow, mTitleBarView);
-        mCanversLayout.setVisibility(View.VISIBLE);
-    }
-
 
     @AfterViews
     void afterViews() {
@@ -84,15 +69,15 @@ public class NewsFatherFragment extends Fragment {
                 View.VISIBLE);
         mTitleBarView.setBtnRight(R.drawable.skin_conversation_title_right_btn);
 
-        mPopupWindow = new PopupWindow(mPopView, LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT, true);
-        mPopupWindow.setOnDismissListener(new OnDismissListener() {
-            @Override
-            public void onDismiss() {
-                mTitleBarView
-                        .setBtnRight(R.drawable.skin_conversation_title_right_btn);
-                mCanversLayout.setVisibility(View.GONE);
-            }
-        });
+//        mPopupWindow = new PopupWindow(mPopView, LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT, true);
+//        mPopupWindow.setOnDismissListener(new OnDismissListener() {
+//            @Override
+//            public void onDismiss() {
+//                mTitleBarView
+//                        .setBtnRight(R.drawable.skin_conversation_title_right_btn);
+//                mCanversLayout.setVisibility(View.GONE);
+//            }
+//        });
         mTitleBarView.setTitleLeft(R.string.cnews);
         mTitleBarView.setTitleRight(R.string.call);
 
@@ -153,6 +138,20 @@ public class NewsFatherFragment extends Fragment {
 //
 //            }
 //        });
+    }
+
+    @Click({R.id.title_btn_right})
+
+    void BtnRightClicked() {
+        mTitleBarView.setTitleLeft(R.string.scan_title);
+        mTitleBarView.setBtnRight(R.drawable.skin_conversation_title_right_btn_selected);
+
+        mTitleBarView.refreshDrawableState();
+        FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
+        if(mPopView==null)
+            mPopView = new NewsPopFragment_();
+        mPopView.show(ft, "newsPop");
+
     }
 
 }

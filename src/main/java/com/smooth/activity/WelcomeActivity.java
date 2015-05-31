@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.animation.Animation;
 import android.widget.ImageView;
 import com.google.inject.Inject;
 import com.smooth.R;
@@ -15,6 +16,7 @@ import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.RoboGuice;
 import org.androidannotations.annotations.ViewById;
+import org.androidannotations.annotations.res.AnimationRes;
 import org.androidannotations.annotations.sharedpreferences.Pref;
 
 /**
@@ -37,7 +39,8 @@ public class WelcomeActivity extends Activity {
     ImageView iv_welcome;
     @Pref
     SysPrefs_ sysPrefs;
-
+    @AnimationRes
+    Animation login_anim;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +50,7 @@ public class WelcomeActivity extends Activity {
 
     @AfterViews
     void initView() {
+        iv_welcome.setAnimation(login_anim);
         iv_welcome.postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -66,5 +70,6 @@ public class WelcomeActivity extends Activity {
             }
         }, 2000);
     }
+
 
 }
