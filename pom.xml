@@ -16,6 +16,7 @@
         <zxing.version>3.2.0</zxing.version>
         <jackson.version>2.5.3</jackson.version>
         <otto.version>1.3.7</otto.version>
+        <arcgis.android.version>10.2.6</arcgis.android.version>
         <android.plugin.version>3.6.0</android.plugin.version>
     </properties>
 
@@ -66,7 +67,41 @@
             <artifactId>otto</artifactId>
             <version>${otto.version}</version>
         </dependency>
+        <dependency>
+            <groupId>com.esri.arcgis.android</groupId>
+            <artifactId>arcgis-android-app-toolkit</artifactId>
+            <version>${arcgis.android.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.esri.arcgis.android</groupId>
+            <artifactId>jackson-core</artifactId>
+            <version>1.9.5</version>
+        </dependency>
+        <dependency>
+            <groupId>com.esri.arcgis.android</groupId>
+            <artifactId>jackson-mapper</artifactId>
+            <version>1.9.5</version>
+        </dependency>
+        <dependency>
+            <groupId>com.esri.arcgis.android</groupId>
+            <artifactId>jcifs</artifactId>
+            <version>1.3.17</version>
+        </dependency>
+        <dependency>
+            <groupId>com.esri.arcgis.android</groupId>
+            <artifactId>arcgis-android-api</artifactId>
+            <version>${arcgis.android.version}</version>
+        </dependency>
     </dependencies>
+    <repositories>
+        <repository>
+            <id>roosevejun-releases</id>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <url>https://raw.github.com/roosevejun/mvn-repository/master/releases</url>
+        </repository>
+    </repositories>
     <build>
         <finalName>${project.artifactId}</finalName>
         <pluginManagement>
